@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import com.ats.webapi.entity.Category;
 import com.ats.webapi.repository.CategoryRepository;
-import com.ats.webapi.repository.CategoryRepository;
 
 @Service
 public class CategoryService {
@@ -39,6 +38,11 @@ public class CategoryService {
 	public Category findCategoryById(int id) throws ResourceNotFoundException {
 
 		Category categoryOpt = categoryRepository.findById(id);
+		
+		if (Objects.isNull(categoryOpt)) {
+
+			throw new ResourceNotFoundException("Category Not Found With Id " +id);
+			}
 
 		return categoryOpt;
 

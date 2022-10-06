@@ -7,15 +7,15 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Repository;
 
-import com.ats.webapi.entity.Category;
-
+import com.ats.webapi.entity.Tax;
 @Repository
-public interface CategoryRepository extends JpaRepository<Category, Integer>, JpaSpecificationExecutor<Category> {
-
-	Category findById(int id);
+public interface TaxRepository extends JpaRepository<Tax, Integer>,JpaSpecificationExecutor<Tax>{
+	
+	Tax findById(int id);
 
 	@Transactional
 	@Modifying
-	int deleteCategoryById(int id);
+	int deleteTaxById(int id);
+
 
 }
