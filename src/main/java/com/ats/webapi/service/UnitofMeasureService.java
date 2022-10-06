@@ -1,0 +1,57 @@
+package com.ats.webapi.service;
+
+import java.awt.print.Pageable;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+import org.springframework.stereotype.Service;
+
+import com.ats.webapi.entity.UnitofMeasure;
+import com.ats.webapi.repository.UnitofMeasureRepository;
+
+@Service
+public class UnitofMeasureService {
+	
+	@Autowired
+	private UnitofMeasureRepository unitofMeasureRepository;
+
+	public UnitofMeasure saveUnitofMeasure(UnitofMeasure unitofMeasure) throws DataIntegrityViolationException {
+
+		UnitofMeasure unitofMeasureSaveResponse = unitofMeasureRepository.save(unitofMeasure);
+
+		if (Objects.isNull(unitofMeasureSaveResponse)) {
+			
+			throw new DataIntegrityViolationException("Unable to save a unitofMeasure " + unitofMeasure.getName());
+		}
+
+		return unitofMeasureSaveResponse;
+
+	}
+	public List<UnitofMeasure> findAll()
+	{
+        return unitofMeasureRepository.findAll();
+    }
+
+	public UnitofMeasure findUnitofMeasureById(int id) throws ResourceNotFoundException {
+
+		UnitofMeasure unitofMeasureOpt = unitofMeasureRepository.findById(id);
+
+		return unitofMeasureOpt;
+
+	}
+	
+	public int deleteUnitofMeasureById(int id) throws ResourceNotFoundException {
+
+
+		return unitofMeasureRepository.deleteUnitofMeasureById(id);
+
+	}
+	
+
+}
