@@ -13,44 +13,44 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ats.webapi.entity.UnitofMeasure;
+import com.ats.webapi.entity.Vendor;
 import com.ats.webapi.model.ServiceResponse;
-import com.ats.webapi.service.UnitofMeasureService;
+import com.ats.webapi.service.VendorService;
 
 @RestController
-@RequestMapping("/unit-of-measure")
-public class UnitofMeasureController {
-
+@RequestMapping("/vendor")
+public class VendorController {
+	
 	@Autowired
-	private UnitofMeasureService unitofMeasureService;
+	private VendorService vendorService;
 
 	@PostMapping
-	public ServiceResponse saveUnitofMeasure(@RequestBody @Valid UnitofMeasure unitofMeasure)
+	public ServiceResponse saveVendor(@RequestBody @Valid Vendor vendor)
 			throws DataIntegrityViolationException {
 
-		return ServiceResponse.asSuccess(unitofMeasureService.saveUnitofMeasure(unitofMeasure));
+		return ServiceResponse.asSuccess(vendorService.saveVendor(vendor));
 
 	}
 
 	@GetMapping("/{id}")
-	public ServiceResponse getUnitofMeasureById(@PathVariable int id) {
+	public ServiceResponse getVendorById(@PathVariable int id) {
 
-		UnitofMeasure unitofMeasure = unitofMeasureService.findUnitofMeasureById(id);
-		return ServiceResponse.asSuccess(unitofMeasure);
+		Vendor vendor = vendorService.findVendorById(id);
+		return ServiceResponse.asSuccess(vendor);
 
 	}
 
 	@GetMapping
 	public ServiceResponse findAll() throws Exception {
 
-		return ServiceResponse.asSuccess(unitofMeasureService.findAll());
+		return ServiceResponse.asSuccess(vendorService.findAll());
 
 	}
 
 	@DeleteMapping("/{id}")
 	public ServiceResponse deleteSubject(@PathVariable int id) throws ResourceNotFoundException {
 
-		unitofMeasureService.deleteUnitofMeasureById(id);
+		vendorService.deleteVendorById(id);
 
 		return ServiceResponse.asSuccess("success");
 	}

@@ -41,6 +41,11 @@ public class UnitofMeasureService {
 	public UnitofMeasure findUnitofMeasureById(int id) throws ResourceNotFoundException {
 
 		UnitofMeasure unitofMeasureOpt = unitofMeasureRepository.findById(id);
+		
+		if (Objects.isNull(unitofMeasureOpt)) {
+			
+			throw new ResourceNotFoundException("Unit of Measure Not Found With Id " +id);
+		}
 
 		return unitofMeasureOpt;
 
