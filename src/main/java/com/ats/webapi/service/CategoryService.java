@@ -13,48 +13,44 @@ import com.ats.webapi.repository.CategoryRepository;
 
 @Service
 public class CategoryService {
-	
-	
+
 	@Autowired
 	private CategoryRepository categoryRepository;
 
-	public Category saveCategory(Category category) throws DataIntegrityViolationException {
+	public Category saveCategory(Category category) {
 
 		Category categorySaveResponse = categoryRepository.save(category);
 
 		if (Objects.isNull(categorySaveResponse)) {
-			
+
 			throw new DataIntegrityViolationException("Unable to save a category " + category.getName());
 		}
 
 		return categorySaveResponse;
 
 	}
-	public List<Category> findAll()
-	{
-        return categoryRepository.findAll();
-    }
+
+	public List<Category> findAll() {
+		return categoryRepository.findAll();
+	}
 
 	public Category findCategoryById(int id) throws ResourceNotFoundException {
 
 		Category categoryOpt = categoryRepository.findById(id);
-		
+
 		if (Objects.isNull(categoryOpt)) {
 
-			throw new ResourceNotFoundException("Category Not Found With Id " +id);
-			}
+			throw new ResourceNotFoundException("Category Not Found With Id " + id);
+		}
 
 		return categoryOpt;
 
 	}
-	
-	public int deleteCategoryById(int id) throws ResourceNotFoundException {
 
+	public int deleteCategoryById(int id) throws ResourceNotFoundException {
 
 		return categoryRepository.deleteCategoryById(id);
 
 	}
-	
-	
 
 }
