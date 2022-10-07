@@ -1,5 +1,7 @@
 package com.ats.webapi.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ats.webapi.entity.Tax;
+import com.ats.webapi.model.Info;
 import com.ats.webapi.model.ServiceResponse;
 import com.ats.webapi.service.TaxService;
 
@@ -45,6 +48,13 @@ public class TaxController {
 		return ServiceResponse.asSuccess(taxService.findAll());
 
 	}
+	
+	@GetMapping("get-all")
+	public List<Tax> getAll() throws Exception {
+
+		return taxService.findAll();
+
+	}
 
 	@DeleteMapping("/{id}")
 	public ServiceResponse deleteSubject(@PathVariable int id) throws ResourceNotFoundException {
@@ -53,5 +63,34 @@ public class TaxController {
 
 		return ServiceResponse.asSuccess("success");
 	}
+	
+	@GetMapping("/{id}/delete-by-tax-id")
+	public  Info deleteCity(@PathVariable("id") int id) {
+
+		Info info = new Info();
+
+		try {
+
+			int delete = taxService.deleteTaxById(id);
+
+			if (delete > 0) {
+				info.setError(false);
+				info.setMsg("Tax Deleted Successfully");
+			} else {
+				info.setError(true);
+				info.setMsg("Failed To Delete Tax");
+			}
+
+		} catch (Exception e) {
+			info.setError(true);
+			info.setMsg("Failed To Delete Tax");
+			e.printStackTrace();
+		}
+
+		return info;
+
+	}
+	
+	
 
 }
