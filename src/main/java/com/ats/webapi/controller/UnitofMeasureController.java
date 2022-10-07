@@ -1,5 +1,7 @@
 package com.ats.webapi.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ats.webapi.entity.UnitofMeasure;
+import com.ats.webapi.model.Info;
 import com.ats.webapi.model.ServiceResponse;
 import com.ats.webapi.service.UnitofMeasureService;
 
@@ -46,6 +49,13 @@ public class UnitofMeasureController {
 		return ServiceResponse.asSuccess(unitofMeasureService.findAll());
 
 	}
+	
+	@GetMapping("get-all")
+	public List<UnitofMeasure> getAll() throws Exception {
+
+		return unitofMeasureService.findAll();
+
+	}
 
 	@DeleteMapping("/{id}")
 	public ServiceResponse deleteSubject(@PathVariable int id) throws ResourceNotFoundException {
@@ -53,6 +63,33 @@ public class UnitofMeasureController {
 		unitofMeasureService.deleteUnitofMeasureById(id);
 
 		return ServiceResponse.asSuccess("success");
+	}
+	
+	@GetMapping("/{id}/delete-by-uom-id")
+	public  Info deleteCity(@PathVariable("id") int id) {
+
+		Info info = new Info();
+
+		try {
+
+			int delete = unitofMeasureService.deleteUnitofMeasureById(id);
+
+			if (delete > 0) {
+				info.setError(false);
+				info.setMsg("UOM Deleted Successfully");
+			} else {
+				info.setError(true);
+				info.setMsg("Failed To Delete UOM");
+			}
+
+		} catch (Exception e) {
+			info.setError(true);
+			info.setMsg("Failed To Delete UOM");
+			e.printStackTrace();
+		}
+
+		return info;
+
 	}
 
 }

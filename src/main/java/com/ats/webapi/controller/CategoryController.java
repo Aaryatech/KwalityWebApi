@@ -13,9 +13,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ats.webapi.entity.Category;
+import com.ats.webapi.model.Info;
 import com.ats.webapi.model.ServiceResponse;
 import com.ats.webapi.service.CategoryService;
 
@@ -36,8 +40,6 @@ public class CategoryController {
 	@PostMapping("/save")
 	public Category saveCategoryResponse(@RequestBody @Valid Category category) throws DataIntegrityViolationException {
 
-		System.err.println("in category save");
-
 		return categoryService.saveCategory(category);
 
 	}
@@ -47,6 +49,14 @@ public class CategoryController {
 
 		Category category = categoryService.findCategoryById(id);
 		return ServiceResponse.asSuccess(category);
+
+	}
+	
+	@GetMapping("/{id}/get-by-id")
+	public Category findCategoryById(@PathVariable int id) {
+
+		Category category = categoryService.findCategoryById(id);
+		return category;
 
 	}
 
@@ -70,6 +80,40 @@ public class CategoryController {
 		categoryService.deleteCategoryById(id);
 
 		return ServiceResponse.asSuccess("success");
+	}
+	
+	@GetMapping("/{id}/delete-by-id")
+	public int deleteCategoryById(@PathVariable int id) throws ResourceNotFoundException {
+
+		return categoryService.deleteCategoryById(id);
+	}
+	
+
+	@GetMapping("/{id}/delete-by-category-id")
+	public  Info deleteCity(@PathVariable("id") int id) {
+
+		Info info = new Info();
+
+		try {
+
+			int delete = categoryService.deleteCategoryById(id);
+
+			if (delete > 0) {
+				info.setError(false);
+				info.setMsg("Category Deleted Successfully");
+			} else {
+				info.setError(true);
+				info.setMsg("Failed To Delete Category");
+			}
+
+		} catch (Exception e) {
+			info.setError(true);
+			info.setMsg("Failed To Delete Category");
+			e.printStackTrace();
+		}
+
+		return info;
+
 	}
 
 }
