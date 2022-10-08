@@ -35,8 +35,9 @@ public class ItemIssueDetail {
 	@Column(name="item_issue_qty")
 	private int itemIssueQty;
 	
-	@Column(name="mrn_detail_id")
-	private int mrnDetailId;
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="mrn_detail_id",referencedColumnName="id")
+	private MrnDetail mrnDetail;
 	
 	@Column(name="requisition_detail_id")
 	private int requisitionDetailId;
