@@ -15,52 +15,52 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ats.webapi.entity.Mrn;
+import com.ats.webapi.entity.ItemIssue;
 import com.ats.webapi.model.Info;
 import com.ats.webapi.model.ServiceResponse;
-import com.ats.webapi.service.MrnService;
+import com.ats.webapi.service.ItemIssueService;
 
 @RestController
-@RequestMapping("mrn")
-public class MrnController {
-
+@RequestMapping("/item-issue")
+public class ItemIssueController {
+	
 	@Autowired
-	private MrnService mrnService;
+	private ItemIssueService itemIssueService;
 
 	@PostMapping
-	public ServiceResponse saveMrn(@RequestBody @Valid Mrn mrn)
+	public ServiceResponse saveItemIssue(@RequestBody @Valid ItemIssue itemIssue)
 			throws DataIntegrityViolationException {
 
-		return ServiceResponse.asSuccess(mrnService.saveMrn(mrn));
+		return ServiceResponse.asSuccess(itemIssueService.saveItemIssue(itemIssue));
 
 	}
 
 	@GetMapping("/{id}")
-	public ServiceResponse getMrnById(@PathVariable int id) {
+	public ServiceResponse getItemIssueById(@PathVariable int id) {
 
-		Mrn mrn = mrnService.findMrnById(id);
-		return ServiceResponse.asSuccess(mrn);
+		ItemIssue itemIssue = itemIssueService.findItemIssueById(id);
+		return ServiceResponse.asSuccess(itemIssue);
 
 	}
 
 	@GetMapping
 	public ServiceResponse findAll() throws Exception {
 
-		return ServiceResponse.asSuccess(mrnService.findAll());
+		return ServiceResponse.asSuccess(itemIssueService.findAll());
 
 	}
 	
 	@GetMapping("get-all")
-	public List<Mrn> getAll() throws Exception {
+	public List<ItemIssue> getAll() throws Exception {
 
-		return mrnService.findAll();
+		return itemIssueService.findAll();
 
 	}
 
 	@DeleteMapping("/{id}")
 	public ServiceResponse deleteSubject(@PathVariable int id) throws ResourceNotFoundException {
 
-		mrnService.deleteMrnById(id);
+		itemIssueService.deleteItemIssueById(id);
 
 		return ServiceResponse.asSuccess("success");
 	}
@@ -72,23 +72,24 @@ public class MrnController {
 
 		try {
 
-			int delete = mrnService.deleteMrnById(id);
+			int delete = itemIssueService.deleteItemIssueById(id);
 
 			if (delete > 0) {
 				info.setError(false);
-				info.setMsg("Mrn Deleted Successfully");
+				info.setMsg("Item Issue Deleted Successfully");
 			} else {
 				info.setError(true);
-				info.setMsg("Failed To Delete Mrn Issue");
+				info.setMsg("Failed To Delete Item Issue");
 			}
 
 		} catch (Exception e) {
 			info.setError(true);
-			info.setMsg("Failed To Delete Mrn Issue");
+			info.setMsg("Failed To Delete Item Issue");
 			e.printStackTrace();
 		}
 
 		return info;
 
 	}
+
 }

@@ -5,18 +5,16 @@ import javax.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.stereotype.Repository;
 
-import com.ats.webapi.entity.Mrn;
+import com.ats.webapi.entity.ItemIssue;
 
-@Repository
-public interface MrnRepository extends JpaRepository<Mrn, Integer>, JpaSpecificationExecutor<Mrn> {
-
-	Mrn findById(int id);
+public interface ItemIssueRepository extends JpaRepository<ItemIssue, Integer>, 
+JpaSpecificationExecutor<ItemIssue> {
+	
+	ItemIssue findById(int id);
 
 	@Transactional
 	@Modifying
-	int deleteMrnById(int id);
+	int deleteItemIssueById(int id);
 
-	
 }
