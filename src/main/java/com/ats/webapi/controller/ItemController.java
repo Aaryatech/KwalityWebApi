@@ -1,5 +1,7 @@
 package com.ats.webapi.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ats.webapi.entity.Item;
+import com.ats.webapi.entity.Vendor;
+import com.ats.webapi.model.Info;
 import com.ats.webapi.model.ServiceResponse;
 import com.ats.webapi.service.ItemService;
 
@@ -54,5 +58,43 @@ public class ItemController {
 
 		return ServiceResponse.asSuccess("success");
 	}
+	
+	
+
+	@GetMapping("get-all")
+	public List<Item> getAll() throws Exception {
+
+		return itemService.findAll();
+
+	}
+	
+	
+	@GetMapping("/{id}/delete-by-item-id")
+	public  Info deleteItem(@PathVariable("id") int id) {
+
+		Info info = new Info();
+
+		try {
+
+			int delete = itemService.deleteItemById(id);
+
+			if (delete > 0) {
+				info.setError(false);
+				info.setMsg("Item Deleted Successfully");
+			} else {
+				info.setError(true);
+				info.setMsg("Failed To Delete Item");
+			}
+
+		} catch (Exception e) {
+			info.setError(true);
+			info.setMsg("Failed To Delete Item");
+			e.printStackTrace();
+		}
+
+		return info;
+
+	}
+	
 
 }
