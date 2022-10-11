@@ -55,8 +55,21 @@ public class Item {
 	@Column(name="height")
 	private float height;
 	
+	@Column(name="moisture_level")
+	private float moistureLevel;
 	
-
+	@Column(name="no_of_pieces")
+	private int noOfPieces;
+	
+	@Column(name="calculate_by_qty")
+	private int calculateByQty;
+	
+	@Column(name="calculate_yield")
+	private int calulateYield;
+	
+	@Column(name="inclusive_rate")
+	private double inclusiveRate;
+	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="tax_id",referencedColumnName="id")
 	private Tax tax;
