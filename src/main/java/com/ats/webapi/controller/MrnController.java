@@ -65,7 +65,7 @@ public class MrnController {
 		return ServiceResponse.asSuccess("success");
 	}
 	
-	@GetMapping("/{id}/delete-by-uom-id")
+	@GetMapping("/{id}/delete-by-mrn-id")
 	public  Info deleteCity(@PathVariable("id") int id) {
 
 		Info info = new Info();
@@ -85,6 +85,33 @@ public class MrnController {
 		} catch (Exception e) {
 			info.setError(true);
 			info.setMsg("Failed To Delete Mrn Issue");
+			e.printStackTrace();
+		}
+
+		return info;
+
+	}
+	
+	@GetMapping("/{id}/delete-by-mrn-detail-id")
+	public  Info deleteMrnDetailById(@PathVariable("id") int id) {
+
+		Info info = new Info();
+
+		try {
+
+			int delete = mrnService.deleteMrnDetailById(id);
+
+			if (delete > 0) {
+				info.setError(false);
+				info.setMsg("Mrn Detail Deleted Successfully");
+			} else {
+				info.setError(true);
+				info.setMsg("Failed To Delete Mrn Detail");
+			}
+
+		} catch (Exception e) {
+			info.setError(true);
+			info.setMsg("Failed To Delete Mrn Detail");
 			e.printStackTrace();
 		}
 
