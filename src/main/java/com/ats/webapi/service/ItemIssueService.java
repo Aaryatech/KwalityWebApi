@@ -9,6 +9,7 @@ import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.ats.webapi.entity.ItemIssue;
+import com.ats.webapi.repository.ItemIssueDetailRepository;
 import com.ats.webapi.repository.ItemIssueRepository;
 
 @Service
@@ -16,6 +17,9 @@ public class ItemIssueService {
 	
 	@Autowired
 	private ItemIssueRepository itemIssueRepository;
+	
+	@Autowired
+	private ItemIssueDetailRepository itemIssueDetailRepository;
 
 	public ItemIssue saveItemIssue(ItemIssue itemIssue) {
 
@@ -51,6 +55,11 @@ public class ItemIssueService {
 
 		return itemIssueRepository.deleteItemIssueById(id);
 
+	}
+
+	public int deleteIssueDetailById(int id) {
+		// TODO Auto-generated method stub
+		return itemIssueDetailRepository.deleteIssueDetailById(id);
 	}
 
 }

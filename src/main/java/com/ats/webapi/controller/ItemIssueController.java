@@ -91,5 +91,35 @@ public class ItemIssueController {
 		return info;
 
 	}
+	
+	
+	@GetMapping("/{id}/delete-by-issue-detail-id")
+	public  Info deleteIssueDetailById(@PathVariable("id") int id) {
+
+		Info info = new Info();
+
+		try {
+
+			int delete = itemIssueService.deleteIssueDetailById(id);
+
+			if (delete > 0) {
+				info.setError(false);
+				info.setMsg("Item Issue Deleted Successfully");
+			} else {
+				info.setError(true);
+				info.setMsg("Failed To Delete Item Issue");
+			}
+
+		} catch (Exception e) {
+			info.setError(true);
+			info.setMsg("Failed To Delete Item Issue");
+			e.printStackTrace();
+		}
+
+		return info;
+
+	}
+	
+
 
 }
