@@ -21,5 +21,8 @@ public class Category {
 
 	@Column(name = "name")
 	private String name;
+	
+	@Column(name="rate")
+	private float rate;
 
 }

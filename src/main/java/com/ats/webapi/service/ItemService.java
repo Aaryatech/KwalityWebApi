@@ -53,5 +53,9 @@ public class ItemService {
 		return itemRepository.deleteItemById(id);
 
 	}
+	public List<Item> findItemByCategoryId(int id) {
+		// TODO Auto-generated method stub
+		return itemRepository.findItemByCategoryId(id);
+	}
 
 }

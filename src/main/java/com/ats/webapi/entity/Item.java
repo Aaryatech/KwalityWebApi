@@ -44,6 +44,18 @@ public class Item {
 
 	@Column(name = "weight")
 	private double weight;
+	
+	@Column(name="length")
+	private float length;
+	
+	
+	@Column(name="width")
+	private float width;
+	
+	@Column(name="height")
+	private float height;
+	
+	
 
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="tax_id",referencedColumnName="id")

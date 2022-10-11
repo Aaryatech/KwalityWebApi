@@ -68,6 +68,13 @@ public class ItemController {
 
 	}
 	
+	@GetMapping("/get-by-category-id/{id}")
+	public List<Item> findItemByCategoryId(@PathVariable int id) throws Exception {
+
+		return itemService.findItemByCategoryId(id);
+
+	}
+	
 	
 	@GetMapping("/{id}/delete-by-item-id")
 	public  Info deleteItem(@PathVariable("id") int id) {
