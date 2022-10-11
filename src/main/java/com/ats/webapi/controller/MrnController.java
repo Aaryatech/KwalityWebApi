@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ats.webapi.entity.Mrn;
+import com.ats.webapi.entity.MrnDetail;
 import com.ats.webapi.model.Info;
 import com.ats.webapi.model.ServiceResponse;
 import com.ats.webapi.service.MrnService;
@@ -116,6 +117,15 @@ public class MrnController {
 		}
 
 		return info;
+
+	}
+	
+	
+	
+	@GetMapping("/get-remaining-qty/{id}")
+	public MrnDetail findRemainingQuantityByItemId(@PathVariable int id)  {
+
+		return mrnService.findRemainingQuantityByItemId(id);
 
 	}
 }

@@ -115,5 +115,12 @@ public class MrnService {
 	
 		return mrnDetailRepository.deleteMrnDetailById(id);
 	}
+	
+	
+	public MrnDetail findRemainingQuantityByItemId(int id) {
+		// TODO Auto-generated method stub
+		return mrnDetailRepository.findRemainingQuantityByItemId(id);
+	}
+
 
 }
