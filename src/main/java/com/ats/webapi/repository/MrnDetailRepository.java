@@ -1,5 +1,7 @@
 package com.ats.webapi.repository;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -26,5 +28,8 @@ public interface MrnDetailRepository extends JpaRepository<MrnDetail, Integer>, 
 			"WHERE m.item_id=:id\n" + 
 			"GROUP BY m.item_id",nativeQuery=true)
 	MrnDetail findRemainingQuantityByItemId(int id);
+
+	@Query(value="Select m from MrnDetail m where m.item.id=:itemId ")
+	List<MrnDetail> getMrnDetailByItemId(@Param("itemId")int itemId);
 
 }

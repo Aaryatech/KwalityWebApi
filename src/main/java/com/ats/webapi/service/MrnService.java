@@ -6,6 +6,8 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.jpa.repository.Query;
@@ -126,6 +128,16 @@ public class MrnService {
 	public List<Mrn> getMrnByDate(String fromDate, String toDate) {
 		// TODO Auto-generated method stub
 		return mrnRepository.getMrnByDate(fromDate,toDate);
+	}
+
+	public List<MrnDetail> getMrnDetailByItemId(int itemId) {
+
+		return mrnDetailRepository.getMrnDetailByItemId(itemId);
+	}
+
+	public List<MrnDetail> saveAllMrnDetail(@Valid List<MrnDetail> mrnDetail) {
+	
+		return mrnDetailRepository.saveAll(mrnDetail);
 	}
 
 	

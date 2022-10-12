@@ -136,4 +136,19 @@ public class MrnController {
 		return mrnService.getMrnByDate(fromDate,toDate);
 
 	}
+	
+	@GetMapping("/{itemId}/get-mrn-detail-by-item")
+	public List<MrnDetail> getMrnDetailByItemId(@PathVariable int itemId)  {
+	
+		return mrnService.getMrnDetailByItemId(itemId);
+
+	}
+	
+	@PostMapping("save-all-mren-detail")
+	public ServiceResponse saveAllMrnDetail(@RequestBody @Valid List<MrnDetail> mrnDetail)
+			throws DataIntegrityViolationException {
+
+		return ServiceResponse.asSuccess(mrnService.saveAllMrnDetail(mrnDetail));
+
+	}
 }
