@@ -41,7 +41,7 @@ public class MrnService {
 		Tconfig tconfig=tConfigRepository.findTconfigByKey(key);
 		String value=tconfig.getValue();
 		
-		mrn.setMrnNo("MRN"+value);
+//		mrn.setMrnNo("MRN"+value);
 		String number = value;
 		int numberLength = number.length();
 		int temp = Integer.parseInt(number);
