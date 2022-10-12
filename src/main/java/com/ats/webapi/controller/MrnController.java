@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ats.webapi.entity.Mrn;
@@ -126,6 +127,13 @@ public class MrnController {
 	public MrnDetail findRemainingQuantityByItemId(@PathVariable int id)  {
 
 		return mrnService.findRemainingQuantityByItemId(id);
+
+	}
+	
+	@PostMapping("/get-mrn-by-date")
+	public List<Mrn> getMrnByDate(@RequestParam String fromDate,@RequestParam String toDate)  {
+
+		return mrnService.getMrnByDate(fromDate,toDate);
 
 	}
 }

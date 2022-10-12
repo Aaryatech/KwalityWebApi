@@ -8,10 +8,11 @@ import java.util.stream.IntStream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.ats.webapi.entity.Item;
 import com.ats.webapi.entity.Mrn;
 import com.ats.webapi.entity.MrnDetail;
 import com.ats.webapi.entity.Tconfig;
@@ -122,5 +123,10 @@ public class MrnService {
 		return mrnDetailRepository.findRemainingQuantityByItemId(id);
 	}
 
+	public List<Mrn> getMrnByDate(String fromDate, String toDate) {
+		// TODO Auto-generated method stub
+		return mrnRepository.getMrnByDate(fromDate,toDate);
+	}
 
+	
 }
