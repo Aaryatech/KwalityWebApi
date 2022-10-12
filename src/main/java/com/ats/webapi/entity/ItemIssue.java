@@ -45,7 +45,7 @@ public class ItemIssue {
 	private int status;
 	
 	@Column(name="department_id")
-	private int departmentId;
+	private String departmentId;
 	
 	@Column(name="sub_department_id")
 	private int subDepartmentId;

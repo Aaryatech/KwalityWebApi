@@ -62,4 +62,9 @@ public class ItemIssueService {
 		return itemIssueDetailRepository.deleteIssueDetailById(id);
 	}
 
+	public List<ItemIssue> getIssueByDate(String fromDate, String toDate) {
+		// TODO Auto-generated method stub
+		return itemIssueRepository.getIssueByDate(fromDate,toDate);
+	}
+
 }

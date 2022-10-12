@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ats.webapi.entity.ItemIssue;
@@ -65,7 +66,7 @@ public class ItemIssueController {
 		return ServiceResponse.asSuccess("success");
 	}
 	
-	@GetMapping("/{id}/delete-by-uom-id")
+	@GetMapping("/{id}/delete-by-issue-id")
 	public  Info deleteCity(@PathVariable("id") int id) {
 
 		Info info = new Info();
@@ -93,6 +94,11 @@ public class ItemIssueController {
 	}
 	
 	
+	
+	
+	
+	
+	
 	@GetMapping("/{id}/delete-by-issue-detail-id")
 	public  Info deleteIssueDetailById(@PathVariable("id") int id) {
 
@@ -117,6 +123,13 @@ public class ItemIssueController {
 		}
 
 		return info;
+
+	}
+	
+	@PostMapping("/get-issue-by-date")
+	public List<ItemIssue> getIssueByDate(@RequestParam String fromDate,@RequestParam String toDate)  {
+
+		return itemIssueService.getIssueByDate(fromDate,toDate);
 
 	}
 	
