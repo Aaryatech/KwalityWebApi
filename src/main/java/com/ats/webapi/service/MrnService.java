@@ -120,9 +120,9 @@ public class MrnService {
 	}
 	
 	
-	public MrnDetail findRemainingQuantityByItemId(int id) {
+	public MrnDetail findRemainingQuantityByItemId(int id,String date) {
 		// TODO Auto-generated method stub
-		return mrnDetailRepository.findRemainingQuantityByItemId(id);
+		return mrnDetailRepository.findRemainingQuantityByItemId(id,date);
 	}
 
 	public List<Mrn> getMrnByDate(String fromDate, String toDate) {

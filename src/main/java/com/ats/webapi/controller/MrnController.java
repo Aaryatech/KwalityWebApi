@@ -123,10 +123,10 @@ public class MrnController {
 	
 	
 	
-	@GetMapping("/get-remaining-qty/{id}")
-	public MrnDetail findRemainingQuantityByItemId(@PathVariable int id)  {
+	@GetMapping("/get-remaining-qty/{id}/{date}")
+	public MrnDetail findRemainingQuantityByItemId(@PathVariable int id,@PathVariable String date)  {
 
-		return mrnService.findRemainingQuantityByItemId(id);
+		return mrnService.findRemainingQuantityByItemId(id,date);
 
 	}
 	

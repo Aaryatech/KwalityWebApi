@@ -23,11 +23,17 @@ public interface MrnDetailRepository extends JpaRepository<MrnDetail, Integer>, 
 	@Modifying
 	int deleteMrnDetailById(int id);
 
-	@Query(value="SELECT sum(m.remaining_qty) as batch_no,m.*\n" + 
-			"FROM mrn_detail m\n" + 
-			"WHERE m.item_id=:id\n" + 
-			"GROUP BY m.item_id",nativeQuery=true)
-	MrnDetail findRemainingQuantityByItemId(int id);
+	@Query(value="    SELECT\n" + 
+			"        sum(mrd.remaining_qty) as batch_no,\n" + 
+			"        mrd.* \n" + 
+			"    FROM\n" + 
+			"        mrn_detail mrd ,mrn_header mrh\n" + 
+			"    WHERE\n" + 
+			"    mrh.id=mrd.mrn_id  AND\n" + 
+			"        mrd.item_id=:id AND mrd.remaining_qty>0 AND mrh.mrn_date<=:date\n" + 
+			"    GROUP BY\n" + 
+			"        mrd.item_id",nativeQuery=true)
+	MrnDetail findRemainingQuantityByItemId(int id,@Param("date")String date);
 
 	@Query(value="Select m from MrnDetail m where m.item.id=:itemId ")
 	List<MrnDetail> getMrnDetailByItemId(@Param("itemId")int itemId);
