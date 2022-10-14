@@ -12,7 +12,7 @@ import com.ats.webapi.entity.GetStockDetails;
 public interface GetStockDetailRepository extends JpaRepository<GetStockDetails,String>,
 JpaSpecificationExecutor<GetStockDetails> {
 
-	@Query(value="select UUID() as id, a.item_name,ifnull(c.opening_quantity,0) as opening_quantity,ifnull(c.approved_quantity,0) as approved_quantity,\n" + 
+	@Query(value="select UUID() as id, a.item_name,a.rol,ifnull(c.opening_quantity,0) as opening_quantity,ifnull(c.approved_quantity,0) as approved_quantity,\n" + 
 			"ifnull(d.item_issue,0) as issue_quantity\n" + 
 			"from\n" + 
 			"(select * from item) as a\n" + 

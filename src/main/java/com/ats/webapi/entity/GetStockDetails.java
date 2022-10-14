@@ -17,6 +17,9 @@ public class GetStockDetails {
 	@Column(name="item_name")
 	private String itemName;
 	
+	@Column(name="rol")
+	private double rol;
+	
 	@Column(name="opening_quantity")
 	private int openingQuantity;
 	
