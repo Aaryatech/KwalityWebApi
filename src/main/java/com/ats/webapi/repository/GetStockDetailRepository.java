@@ -21,7 +21,7 @@ JpaSpecificationExecutor<GetStockDetails> {
 			"from opening_stock_header osh,opening_stock_detail osd,\n" + 
 			"mrn_header mh, mrn_detail md\n" + 
 			"where osh.id=osd.opening_stock_header_id and mh.id=md.mrn_id and\n" + 
-			"osd.item_id=md.item_id and mh.mrn_date between osh.from_date and :strDate \n" + 
+			"osd.item_id=md.item_id and mh.mrn_date between osh.from_date and :strDate and osh.status=0 \n" + 
 			"group by osd.item_id,md.item_id) as c\n" + 
 			"on c.item_id=a.id\n" + 
 			"LEFT JOIN\n" + 
