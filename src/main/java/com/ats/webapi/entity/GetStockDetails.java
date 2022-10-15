@@ -28,5 +28,8 @@ public class GetStockDetails {
 	
 	@Column(name="issue_quantity")
 	private int issueQuantity;
+	
+	@Column(name="closing_quantity")
+	private int closingQuantity;
 
 }
