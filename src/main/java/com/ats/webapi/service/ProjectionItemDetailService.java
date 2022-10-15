@@ -17,9 +17,9 @@ public class ProjectionItemDetailService {
 	@Autowired
 	private ProjectionItemDetailRepository projectionItemDetailRepository;
 
-	public ProjectionItemDetail saveProjectionItemDetail(ProjectionItemDetail projectionItemDetail) {
+	public List<ProjectionItemDetail> saveProjectionItemDetail(List<ProjectionItemDetail> projectionItemDetail) {
 
-		return projectionItemDetailRepository.save(projectionItemDetail);
+		return projectionItemDetailRepository.saveAll(projectionItemDetail);
 	}
 
 	public ProjectionItemDetail getDetailById(int id) {

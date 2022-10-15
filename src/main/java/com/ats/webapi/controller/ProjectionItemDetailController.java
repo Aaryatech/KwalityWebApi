@@ -1,5 +1,7 @@
 package com.ats.webapi.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +23,7 @@ public class ProjectionItemDetailController {
 	private ProjectionItemDetailService projectionItemDetailService;
 
 	@PostMapping
-	public ServiceResponse saveCategory(@RequestBody ProjectionItemDetail projectionItemDetail) {
+	public ServiceResponse saveCategory(@RequestBody List<ProjectionItemDetail> projectionItemDetail) {
 
 		return ServiceResponse.asSuccess(projectionItemDetailService.saveProjectionItemDetail(projectionItemDetail));
 
