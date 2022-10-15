@@ -100,5 +100,13 @@ public class OpeningStockHeaderController {
 
 	}
 	
+	//where rol>opening
+	@GetMapping("/get-stock-details-with-rol")
+	public List<GetStockDetails> getStockDetailsWithRol() throws Exception {
+
+		return openingStockHeaderService.getStockDetailsWithRol();
+
+	}
+	
 
 }

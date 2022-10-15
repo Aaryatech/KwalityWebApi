@@ -68,5 +68,13 @@ public class OpeningStockHeaderService {
 	
 		return getStockDetailRepository.getStockDetails(strDate);
 	}
+	public List<GetStockDetails> getStockDetailsWithRol() {
+		
+		Date date=new Date();
+	    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");  
+	    String strDate = formatter.format(date);  
+	
+		return getStockDetailRepository.getStockDetailsWithRol(strDate);
+	}
 
 }
