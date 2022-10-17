@@ -1,6 +1,7 @@
 package com.ats.webapi.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -74,9 +75,12 @@ public class MrnService {
 			totTaxable=totTaxable+mrnDetailList.get(i).getTaxableAmount();
 			total=total+mrnDetailList.get(i).getTotalAmount();		
 		}
+		Date insertDateTime=new Date();
 		mrn.setTaxAmount(totTax);
 		mrn.setTaxableAmount(totTaxable);
 		mrn.setTotalAmount(total);
+		mrn.setInsertDateTime(insertDateTime);
+		
 		 
 		Mrn mrnSaveResponse = mrnRepository.save(mrn);
 		
