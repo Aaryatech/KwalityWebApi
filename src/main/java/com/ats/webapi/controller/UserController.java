@@ -13,8 +13,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ats.webapi.entity.LoginResponse;
 import com.ats.webapi.entity.User;
 import com.ats.webapi.model.Info;
 import com.ats.webapi.model.ServiceResponse;
@@ -91,5 +95,53 @@ public class UserController {
 		return info;
 
 	}
+	
+	@PostMapping("/checkUserCredentialForLogin")
+	public  LoginResponse checkUserNameForLogin(@RequestParam String userName, @RequestParam String pass ) {
+
+		LoginResponse loginResponse=new LoginResponse();
+		loginResponse=userService.checkUserNameForLogin(userName, pass);
+		System.err.println(loginResponse);
+		return loginResponse;
+
+	}
+	
+	
+	
+	@PostMapping("/checkValidEmail")
+	public  LoginResponse checkValidEmail(@RequestParam String email ) {
+
+		LoginResponse loginResponse=new LoginResponse();
+		loginResponse=userService.checkValidEmail(email);
+		System.err.println(loginResponse);
+		return loginResponse;
+
+	}
+	
+	
+	@RequestMapping(value = { "/updateUserPassword" }, method = RequestMethod.POST)
+	public @ResponseBody Info updateUserPassword(@RequestParam int userId, @RequestParam String newPassword) {
+
+		Info info = new Info();
+		int res = 0;
+		try {
+			res = userService.updateUserPass(userId, newPassword);
+
+			if (res > 0) {
+				info.setError(false);
+				info.setMsg("Password changed successfully");
+			} else {
+				info.setError(true);
+				info.setMsg("Failed to change password");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return info;
+	}
+	
+	
+	
+	
 
 }

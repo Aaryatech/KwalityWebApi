@@ -41,6 +41,12 @@ public class User {
 	@Column(name="maker_user_id")
 	private int makerUserId;
 	
+	@Column(name="contact_no")
+	private String contactNo;
+	
+	@Column(name="email")
+	private String email;
+	
 	@JsonFormat(locale = "hi",timezone = "Asia/Kolkata", pattern = "dd-MM-yyyy")
 	@Column(name="maker_enter_datetime")
 	private Date makerEnterDateTime;
