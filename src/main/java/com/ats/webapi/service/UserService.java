@@ -45,7 +45,7 @@ public class UserService {
 		
 		if (Objects.isNull(userOpt)) {
 			
-			throw new ResourceNotFoundException("Unit of Measure Not Found With Id " +id);
+			throw new ResourceNotFoundException("User Not Found With Id " +id);
 		}
 
 		return userOpt;
