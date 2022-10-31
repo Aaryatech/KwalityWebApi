@@ -37,6 +37,12 @@ public class ProjectionItem {
 	@Column(name = "commision")
 	private float commision;
 
+	@Column(name = "item_wt")
+	private double itemWT;
+	
+	@Column(name = "overheads")
+	private double overheads;
+	
 	@Column(name = "datetime")
 	private String datetime;
 

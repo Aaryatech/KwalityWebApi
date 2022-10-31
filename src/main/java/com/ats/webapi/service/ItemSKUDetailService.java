@@ -17,9 +17,9 @@ public class ItemSKUDetailService {
 	@Autowired
 	private ItemSKUDetailRepository itemSKUDetailRepository;
 
-	public ItemSKUDetail saveItemSKUDetail(ItemSKUDetail itemSKUDetail) {
+	public List<ItemSKUDetail> saveItemSKUDetail(List<ItemSKUDetail> itemSKUDetail) {
 
-		return itemSKUDetailRepository.save(itemSKUDetail);
+		return itemSKUDetailRepository.saveAll(itemSKUDetail);
 	}
 
 	public ItemSKUDetail getById(int id) {

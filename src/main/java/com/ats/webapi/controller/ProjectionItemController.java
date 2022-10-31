@@ -1,5 +1,7 @@
 package com.ats.webapi.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,7 +11,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ats.webapi.entity.ItemSKU;
+import com.ats.webapi.entity.ItemSKUDetail;
 import com.ats.webapi.entity.ProjectionItem;
+import com.ats.webapi.entity.ProjectionItemDetail;
 import com.ats.webapi.model.ServiceResponse;
 import com.ats.webapi.service.ItemSKUDetailService;
 import com.ats.webapi.service.ItemSKUService;
@@ -30,8 +35,8 @@ public class ProjectionItemController {
 	private ItemSKUService itemSKUService;
 
 	@Autowired
-	private ItemSKUDetailService itemSKUDetailService; 
-	
+	private ItemSKUDetailService itemSKUDetailService;
+
 	@PostMapping
 	public ServiceResponse saveCategory(@RequestBody ProjectionItem projectionItem) {
 
@@ -48,9 +53,9 @@ public class ProjectionItemController {
 	}
 
 	@GetMapping
-	public ServiceResponse findAll() throws Exception {
+	public List<ProjectionItem> findAll() throws Exception {
 
-		return ServiceResponse.asSuccess(projectionItemService.findAll());
+		return projectionItemService.findAll();
 
 	}
 
@@ -62,21 +67,21 @@ public class ProjectionItemController {
 	}
 
 	@GetMapping("/{id}/projectionItemDetail")
-	public ServiceResponse projectionItemDetail(@PathVariable int id) throws ResourceNotFoundException {
+	public List<ProjectionItemDetail> projectionItemDetail(@PathVariable int id) throws ResourceNotFoundException {
 
-		return ServiceResponse.asSuccess(projectionItemDetailService.findByProjectionItemId(id));
+		return projectionItemDetailService.findByProjectionItemId(id);
 	}
 
 	@GetMapping("/{id}/itemSKUs")
-	public ServiceResponse itemSKUs(@PathVariable int id) throws ResourceNotFoundException {
+	public List<ItemSKU> itemSKUs(@PathVariable int id) throws ResourceNotFoundException {
 
-		return ServiceResponse.asSuccess(itemSKUService.findByProjectionItemId(id));
+		return itemSKUService.findByProjectionItemId(id);
 	}
-	
-	@GetMapping("/{id}/itemSKUsDetail")
-	public ServiceResponse itemSKUsDetail(@PathVariable int id) throws ResourceNotFoundException {
 
-		return ServiceResponse.asSuccess(itemSKUDetailService.findByProjectionItemId(id));
+	@GetMapping("/{id}/itemSKUsDetail")
+	public List<ItemSKUDetail> itemSKUsDetail(@PathVariable int id) throws ResourceNotFoundException {
+
+		return itemSKUDetailService.findByProjectionItemId(id);
 	}
 
 }
