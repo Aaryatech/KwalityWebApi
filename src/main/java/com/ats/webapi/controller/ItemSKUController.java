@@ -48,5 +48,12 @@ public class ItemSKUController {
 		itemSKUService.deleteById(id);
 		return ServiceResponse.asSuccess("success");
 	}
+	
+	@GetMapping("/deleteByprojectionItemId/{id}")
+	public ServiceResponse deleteByprojectionItemId(@PathVariable int id) throws ResourceNotFoundException {
+
+		itemSKUService.deleteByprojectionItemId(id);
+		return ServiceResponse.asSuccess("success");
+	}
 
 }

@@ -37,12 +37,21 @@ public class ItemSKUService {
 	}
 
 	public int deleteById(int id) {
-		itemSKURepository.deleteItemSKUById(id);
-		return 0;
+		return itemSKURepository.deleteItemSKUById(id); 
 	}
 
 	public List<ItemSKU> findByProjectionItemId(int id) {
 		return itemSKURepository.findByProjectionItemId(id);
+	}
+
+	public int deleteByprojectionItemId(int id) {
+		// TODO Auto-generated method stub
+		return itemSKURepository.deleteItemSKUByprojectionItemId(id); 
+	}
+	
+	public List<Integer> getIdByProjectionId(int id) {
+		// TODO Auto-generated method stub
+		return itemSKURepository.getIdByProjectionId(id); 
 	}
 
 }

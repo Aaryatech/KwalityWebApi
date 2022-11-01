@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ats.webapi.entity.ItemSKU;
 import com.ats.webapi.entity.ItemSKUDetail;
 import com.ats.webapi.model.ServiceResponse;
 import com.ats.webapi.service.ItemSKUDetailService;
@@ -48,6 +49,13 @@ public class ItemSKUDetailController {
 	public ServiceResponse deleteSubject(@PathVariable int id) throws ResourceNotFoundException {
 
 		itemSKUDetailService.deleteById(id);
+		return ServiceResponse.asSuccess("success");
+	}
+
+	@GetMapping("/deleteByprojectionItemId/{id}")
+	public ServiceResponse deleteByprojectionItemId(@PathVariable List<Integer> id) throws ResourceNotFoundException {
+
+		itemSKUDetailService.deleteByprojectionItemId(id);
 		return ServiceResponse.asSuccess("success");
 	}
 

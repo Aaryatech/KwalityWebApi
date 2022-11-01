@@ -50,5 +50,12 @@ public class ProjectionItemDetailController {
 		projectionItemDetailService.deleteById(id);
 		return ServiceResponse.asSuccess("success");
 	}
+	
+	@GetMapping("/deleteByprojectionItemId/{id}")
+	public ServiceResponse deleteByprojectionItemId(@PathVariable int id) throws ResourceNotFoundException {
+
+		projectionItemDetailService.deleteByprojectionItemId(id);
+		return ServiceResponse.asSuccess("success");
+	}
 
 }

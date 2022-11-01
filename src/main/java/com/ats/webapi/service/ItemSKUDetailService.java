@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.ats.webapi.entity.ItemSKU;
 import com.ats.webapi.entity.ItemSKUDetail;
 import com.ats.webapi.repository.ItemSKUDetailRepository;
 
@@ -45,6 +46,11 @@ public class ItemSKUDetailService {
 
 	public List<ItemSKUDetail> findByProjectionItemId(int id) {
 		return itemSKUDetailRepository.findByProjectionItemId(id);
+	}
+
+	public int deleteByprojectionItemId(List<Integer> ids) {
+		// TODO Auto-generated method stub
+		return itemSKUDetailRepository.deleteItemSKUDetailByItemSkuIdIn(ids);
 	}
 
 }

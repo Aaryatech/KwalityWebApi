@@ -20,4 +20,8 @@ public interface ProjectionItemDetailRepository
 
 	List<ProjectionItemDetail> findByProjectionItemId(int id);
 
+	@Transactional
+	@Modifying
+	int deleteProjectionItemDetailByProjectionItemId(int id);
+
 }

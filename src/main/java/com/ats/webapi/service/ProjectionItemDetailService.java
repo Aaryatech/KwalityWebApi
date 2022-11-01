@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.ats.webapi.entity.ItemSKU;
 import com.ats.webapi.entity.ProjectionItemDetail;
 import com.ats.webapi.repository.ProjectionItemDetailRepository;
 
@@ -16,6 +17,12 @@ public class ProjectionItemDetailService {
 
 	@Autowired
 	private ProjectionItemDetailRepository projectionItemDetailRepository;
+
+	@Autowired
+	private ItemSKUService itemSKUService;
+
+	@Autowired
+	private ItemSKUDetailService itemSKUDetailService;
 
 	public List<ProjectionItemDetail> saveProjectionItemDetail(List<ProjectionItemDetail> projectionItemDetail) {
 
@@ -44,6 +51,15 @@ public class ProjectionItemDetailService {
 
 	public List<ProjectionItemDetail> findByProjectionItemId(int id) {
 		return projectionItemDetailRepository.findByProjectionItemId(id);
+	}
+
+	public int deleteByprojectionItemId(int id) {
+		// TODO Auto-generated method stub
+		List<Integer> ids = itemSKUService.getIdByProjectionId(id);
+		projectionItemDetailRepository.deleteProjectionItemDetailByProjectionItemId(id);
+		itemSKUService.deleteByprojectionItemId(id);
+		itemSKUDetailService.deleteByprojectionItemId(ids);
+		return 0;
 	}
 
 }
