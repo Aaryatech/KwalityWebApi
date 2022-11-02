@@ -25,6 +25,7 @@ public interface ItemRepository extends JpaRepository<Item,Integer>, JpaSpecific
 	List<Item> findItemByCategoryId(int id);
 
 	@Query("select pc from Item pc join fetch pc.category join fetch pc.unitofMeasure join fetch pc.tax")
+	//@Query("select pc from Item pc ")
 	List<Item> findAllItemDetail();
 
 }

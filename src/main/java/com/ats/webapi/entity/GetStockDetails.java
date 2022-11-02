@@ -21,15 +21,15 @@ public class GetStockDetails {
 	private double rol;
 	
 	@Column(name="opening_quantity")
-	private int openingQuantity;
+	private double openingQuantity;
 	
 	@Column(name="approved_quantity")
-	private int approvedQuantity;
+	private double approvedQuantity;
 	
 	@Column(name="issue_quantity")
-	private int issueQuantity;
+	private double issueQuantity;
 	
 	@Column(name="closing_quantity")
-	private int closingQuantity;
+	private double closingQuantity;
 
 }

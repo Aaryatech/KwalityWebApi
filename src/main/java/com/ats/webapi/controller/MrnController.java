@@ -137,10 +137,10 @@ public class MrnController {
 
 	}
 	
-	@GetMapping("/{itemId}/get-mrn-detail-by-item")
-	public List<MrnDetail> getMrnDetailByItemId(@PathVariable int itemId)  {
+	@PostMapping("/{itemId}/get-mrn-detail-by-item")
+	public List<MrnDetail> getMrnDetailByItemId(@PathVariable int itemId,@RequestParam("date") String date)  {
 	
-		return mrnService.getMrnDetailByItemId(itemId);
+		return mrnService.getMrnDetailByItemId(itemId,date);
 
 	}
 	

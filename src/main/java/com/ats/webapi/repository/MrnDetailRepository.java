@@ -35,7 +35,7 @@ public interface MrnDetailRepository extends JpaRepository<MrnDetail, Integer>, 
 			"        mrd.item_id",nativeQuery=true)
 	MrnDetail findRemainingQuantityByItemId(int id,@Param("date")String date);
 
-	@Query(value="Select m from MrnDetail m where m.item.id=:itemId ")
-	List<MrnDetail> getMrnDetailByItemId(@Param("itemId")int itemId);
+	@Query(value="Select m.* from mrn_detail m,mrn_header h where m.item_id=:itemId and h.id=m.mrn_id and h.mrn_date<=:date order by m.id asc",nativeQuery=true)
+	List<MrnDetail> getMrnDetailByItemId(@Param("itemId")int itemId,@Param("date") String date);
 
 }

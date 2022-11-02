@@ -134,9 +134,9 @@ public class MrnService {
 		return mrnRepository.getMrnByDate(fromDate,toDate);
 	}
 
-	public List<MrnDetail> getMrnDetailByItemId(int itemId) {
+	public List<MrnDetail> getMrnDetailByItemId(int itemId, String date) {
 
-		return mrnDetailRepository.getMrnDetailByItemId(itemId);
+		return mrnDetailRepository.getMrnDetailByItemId(itemId,date);
 	}
 
 	public List<MrnDetail> saveAllMrnDetail(@Valid List<MrnDetail> mrnDetail) {
