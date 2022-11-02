@@ -31,12 +31,12 @@ public class CategoryService {
 	}
 
 	public List<Category> findAll() {
-		return categoryRepository.findAll();
+		return categoryRepository.findAllRecord();
 	}
 
 	public Category findCategoryById(int id) throws ResourceNotFoundException {
 
-		Category categoryOpt = categoryRepository.findById(id);
+		Category categoryOpt = categoryRepository.findByCategoryId(id);
 
 		if (Objects.isNull(categoryOpt)) {
 

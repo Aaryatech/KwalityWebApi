@@ -36,7 +36,8 @@ public class UserService {
 	}
 	public List<User> findAll()
 	{
-        return userRepository.findAll();
+       // return userRepository.findAll();
+		 return userRepository.findAllUser();
     }
 
 	public User findUserById(int id) throws ResourceNotFoundException {

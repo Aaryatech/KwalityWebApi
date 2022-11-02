@@ -10,6 +10,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.LazyToOne;
+import org.hibernate.annotations.LazyToOneOption;
+
 import lombok.Data;
 
 @Entity
@@ -28,15 +31,15 @@ public class Item {
 	@Column(name = "item_cost")
 	private double itemCost;
 
-	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="category_id",referencedColumnName="id")
+	@ManyToOne(fetch = FetchType.EAGER, optional = true)
+	@JoinColumn(name = "category_id", referencedColumnName = "id")
 	private Category category;
 
 	@Column(name = "rol")
 	private double rol;
 
-	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="uom_id",referencedColumnName="id")
+	@ManyToOne(fetch = FetchType.EAGER, optional = true)
+	@JoinColumn(name = "uom_id", referencedColumnName = "id")
 	private UnitofMeasure unitofMeasure;
 
 	@Column(name = "rate")
@@ -44,34 +47,33 @@ public class Item {
 
 	@Column(name = "weight")
 	private double weight;
-	
-	@Column(name="length")
+
+	@Column(name = "length")
 	private float length;
-	
-	
-	@Column(name="width")
+
+	@Column(name = "width")
 	private float width;
-	
-	@Column(name="height")
+
+	@Column(name = "height")
 	private float height;
-	
-	@Column(name="moisture_level")
+
+	@Column(name = "moisture_level")
 	private float moistureLevel;
-	
-	@Column(name="no_of_pieces")
+
+	@Column(name = "no_of_pieces")
 	private int noOfPieces;
-	
-	@Column(name="calculate_by_qty")
+
+	@Column(name = "calculate_by_qty")
 	private int calculateByQty;
-	
-	@Column(name="calculate_yield")
+
+	@Column(name = "calculate_yield")
 	private int calulateYield;
-	
-	@Column(name="inclusive_rate")
+
+	@Column(name = "inclusive_rate")
 	private double inclusiveRate;
-	
-	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="tax_id",referencedColumnName="id")
+
+	@ManyToOne(fetch = FetchType.EAGER, optional = true) 
+	@JoinColumn(name = "tax_id", referencedColumnName = "id")
 	private Tax tax;
 
 }

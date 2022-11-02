@@ -31,12 +31,12 @@ public class TaxService {
 	}
 	public List<Tax> findAll()
 	{
-        return taxRepository.findAll();
+        return taxRepository.findAllTax();
     }
 
 	public Tax findTaxById(int id) throws ResourceNotFoundException {
 
-		Tax taxOpt = taxRepository.findById(id);
+		Tax taxOpt = taxRepository.findByTaxId(id);
 		
 		if (Objects.isNull(taxOpt)) {
 

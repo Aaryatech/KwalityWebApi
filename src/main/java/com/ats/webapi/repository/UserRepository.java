@@ -1,5 +1,7 @@
 package com.ats.webapi.repository;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,8 +12,8 @@ import org.springframework.data.repository.query.Param;
 
 import com.ats.webapi.entity.User;
 
-public interface UserRepository extends JpaRepository<User,Integer>, JpaSpecificationExecutor<User> {
-	
+public interface UserRepository extends JpaRepository<User, Integer>, JpaSpecificationExecutor<User> {
+
 	User findByUserId(int id);
 
 	@Transactional
@@ -24,7 +26,10 @@ public interface UserRepository extends JpaRepository<User,Integer>, JpaSpecific
 
 	@Transactional
 	@Modifying
-	@Query(value="UPDATE m_user SET user_pwd=:newPassword WHERE user_id=:userId",nativeQuery=true)
+	@Query(value = "UPDATE m_user SET user_pwd=:newPassword WHERE user_id=:userId", nativeQuery = true)
 	int updateUserPass(@Param("userId") int userId, @Param("newPassword") String newPassword);
+
+	@Query("select c from User c ")
+	List<User> findAllUser();
 
 }

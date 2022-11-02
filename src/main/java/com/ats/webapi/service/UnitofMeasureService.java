@@ -31,12 +31,12 @@ public class UnitofMeasureService {
 	}
 	public List<UnitofMeasure> findAll()
 	{
-        return unitofMeasureRepository.findAll();
+        return unitofMeasureRepository.findAllUom();
     }
 
 	public UnitofMeasure findUnitofMeasureById(int id) throws ResourceNotFoundException {
 
-		UnitofMeasure unitofMeasureOpt = unitofMeasureRepository.findById(id);
+		UnitofMeasure unitofMeasureOpt = unitofMeasureRepository.findByUomId(id);
 		
 		if (Objects.isNull(unitofMeasureOpt)) {
 			

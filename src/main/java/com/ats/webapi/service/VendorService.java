@@ -31,12 +31,12 @@ public class VendorService {
 	}
 	public List<Vendor> findAll()
 	{
-        return vendorRepository.findAll();
+        return vendorRepository.findVendorAll();
     }
 
 	public Vendor findVendorById(int id) throws ResourceNotFoundException {
 
-		Vendor vendorOpt = vendorRepository.findById(id);
+		Vendor vendorOpt = vendorRepository.findByVendorId(id);
 		
 		if (Objects.isNull(vendorOpt)) {
 			
