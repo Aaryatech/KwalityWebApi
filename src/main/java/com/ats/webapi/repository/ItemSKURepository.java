@@ -19,7 +19,8 @@ public interface ItemSKURepository extends JpaRepository<ItemSKU, Integer>, JpaS
 	@Modifying
 	int deleteItemSKUById(int id);
 
-	List<ItemSKU> findByProjectionItemId(int id);
+	@Query(value=" select s from ItemSKU s where s.projectionItemId=:id")
+	List<ItemSKU> getByProjectionItemId(int id);
 
 	@Transactional
 	@Modifying

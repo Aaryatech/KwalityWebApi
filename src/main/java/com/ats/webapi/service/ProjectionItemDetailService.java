@@ -50,7 +50,7 @@ public class ProjectionItemDetailService {
 	}
 
 	public List<ProjectionItemDetail> findByProjectionItemId(int id) {
-		return projectionItemDetailRepository.findByProjectionItemId(id);
+		return projectionItemDetailRepository.findByItemId(id);
 	}
 
 	public int deleteByprojectionItemId(int id) {

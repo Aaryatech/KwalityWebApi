@@ -5,6 +5,7 @@ import java.util.Objects;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,8 +39,11 @@ public class ItemService {
 	}
 
 	public List<Item> findAll() {
-		  //return itemRepository.findAll();
-		 return itemRepository.findAllItemDetail();
+		// return itemRepository.findAll();
+//		Query query = entityManager.createQuery(" select pc from Item pc join fetch pc.category join fetch pc.unitofMeasure join fetch pc.tax");
+//
+//		return (List<Item>) query.getResultList();
+		  return itemRepository.findAllItemDetail();
 	}
 
 	public Item findItemById(int id) throws ResourceNotFoundException {
@@ -62,8 +66,10 @@ public class ItemService {
 	}
 
 	public List<Item> findItemByCategoryId(int id) {
-		// TODO Auto-generated method stub
-		return itemRepository.findItemByCategoryId(id);
+//		Query query = entityManager.createQuery("select pc from Item pc join fetch pc.category join fetch pc.unitofMeasure join fetch pc.tax where pc.category.id=1");
+//
+//		return (List<Item>) query.getResultList();
+		  return itemRepository.findItemByCategoryId(id);
 	}
 
 }

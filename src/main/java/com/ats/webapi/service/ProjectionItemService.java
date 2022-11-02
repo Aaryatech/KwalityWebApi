@@ -24,18 +24,18 @@ public class ProjectionItemService {
 	}
 
 	public ProjectionItem getItemById(int id) {
-		Optional<ProjectionItem> projectionItem = projectionItemRepository.findById(id);
+		ProjectionItem projectionItem = projectionItemRepository.getItemById(id);
 
-		if (Objects.isNull(projectionItem.get())) {
+		if (Objects.isNull(projectionItem)) {
 
 			throw new ResourceNotFoundException("Item Not found with Id " + id);
 		}
 
-		return projectionItem.get();
+		return projectionItem;
 	}
 
 	public List<ProjectionItem> findAll() {
-		return projectionItemRepository.findAll();
+		return projectionItemRepository.findProjectionItemAll();
 	}
 
 	public int deleteById(int id) {

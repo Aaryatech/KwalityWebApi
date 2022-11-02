@@ -14,17 +14,17 @@ import com.ats.webapi.entity.Vendor;
 
 public interface ItemRepository extends JpaRepository<Item,Integer>, JpaSpecificationExecutor<Item> {
 	
-	@Query("select c from Item c where c.id=:id")
+	@Query("select pc from Item pc join fetch pc.category join fetch pc.unitofMeasure join fetch pc.tax where pc.id=:id")
 	Item findItemDetailById(int id);
 
 	@Transactional
 	@Modifying
 	int deleteItemById(int id);
 
-	@Query("select c from Item c where c.category.id=:id")
+	@Query("select pc from Item pc join fetch pc.category join fetch pc.unitofMeasure join fetch pc.tax where pc.category.id=:id")
 	List<Item> findItemByCategoryId(int id);
 
-	@Query("select c from Item c ")
+	@Query("select pc from Item pc join fetch pc.category join fetch pc.unitofMeasure join fetch pc.tax")
 	List<Item> findAllItemDetail();
 
 }

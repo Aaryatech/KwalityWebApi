@@ -41,7 +41,7 @@ public class ItemSKUService {
 	}
 
 	public List<ItemSKU> findByProjectionItemId(int id) {
-		return itemSKURepository.findByProjectionItemId(id);
+		return itemSKURepository.getByProjectionItemId(id);
 	}
 
 	public int deleteByprojectionItemId(int id) {
