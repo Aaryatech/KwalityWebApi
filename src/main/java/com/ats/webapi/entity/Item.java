@@ -28,8 +28,8 @@ public class Item {
 	@Column(name = "item_name")
 	private String itemName;
 
-	@Column(name = "item_cost")
-	private double itemCost;
+	@Column(name = "item_code")
+	private String itemCode;
 
 	@ManyToOne(fetch = FetchType.EAGER, optional = true)
 	@JoinColumn(name = "category_id", referencedColumnName = "id")
